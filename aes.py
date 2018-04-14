@@ -49,34 +49,62 @@ def row_shift(mat):
         list1.append(list2)
         #list2.clear()
     return list1
+def galois_col(mat):
+    for i in range(4):
+        S = MIX_COL[i:i+1,:]
+        list1 = []
+        for i in range(4):
+            # print (multPoly(S[0,i], mat[i,0]))
+            list1 = reduce_list(list1 , multPoly(S[0,i], mat[i,0]))
+    #print (list1)
+    #list2 = []
+    #   if (list1.count(list1[i]) % 2 != 0) & list1[i] not in list2:
+      #      list2.append(list1[i])
+       # else:
+        #    list2.append(list1[i])
+
+    return list1
 
 def col_mix(mat):
     mat = np.array(mat)
     col_mix_list = np.empty((0))
+    col_ = []
     for i in range(4):
-        col = galois_col(mat[:,i:i+1], i)
-        col_mix_list = np.hstack((col_mix_list, col))
-    return col_mix_list
+        col_ = reduce_list(col_, galois_col(mat[:,i:i+1]))
+        #col_mix_list = np.hstack((col_mix_list, col_))
+    print (col_)
+    #return col_mix_list
 
 # removes the elements which occur in both lists
 def reduce_list(list1, list2):
-    return list(set(list(set(list1).union(set(list2))))  - set(list(set(list1).intersection(set(list2)))))    
-def multGF2():
-    
-def galois_col(mat, index):
-    S = MIX_COL[index:index+1,:]
+    return list(set(list(set(list1).union(set(list2))))  - set(list(set(list1).intersection(set(list2)))))   
+ 
+def multPoly(p, q):
     list1 = []
-    for i in range(4):
-            list2 = multGF2(S[0,i], mat[i,0])
+    list2 = []
+    if p==1:
+        list1.append(0)
+    elif p==2:
+        list1.append(1)
+    else:
+        list1.append(0)
+        list1.append(1)
+    q_bin = bin(int(q, 16))[2:]
+    size = len(q_bin)
+    for i in range(size):
+        if q_bin[i]=='1':
+            list2.append(size-i-1)
+    # Multiplication
+    res = []
+    for i in range(len(list1)):
+        for j in range(len(list2)):
+            if res.count(list1[i]+list2[j])==0:
+                res.append(list1[i]+list2[j])
+            else:
+                res.remove(list1[i]+list2[j])
+    return res
             
-        
-    
-    
-    
-# list(set(list(set([1,2,3,5]).union(set([2,3]))))  - set(list(set([1,2,3,5]).intersection(set([2,3])))))
-    
-# list(set(list(set(list1).union(set(list2))))  - set(list(set(list1).intersection(set(list2)))))    
-    
+           
 
 state_matrix = [['61','65','69','6d'], 
                 ['62','66','6a','6e'], 
@@ -85,6 +113,10 @@ state_matrix = [['61','65','69','6d'],
 #print(state_matrix)
 rs_mat = row_shift(state_matrix)
 cm_mat = col_mix(rs_mat)
+#print (col_mix(cm_mat))
 #print(cm_mat)
 # row_shift(state_matrix)
+
+
+
     
