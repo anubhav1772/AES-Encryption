@@ -53,9 +53,10 @@ def galois_col(mat):
     for i in range(4):
         S = MIX_COL[i:i+1,:]
         list1 = []
-        for i in range(4):
-            # print (multPoly(S[0,i], mat[i,0]))
-            list1 = reduce_list(list1 , multPoly(S[0,i], mat[i,0]))
+        for j in range(4):
+            list1 = reduce_list(list1 , multPoly(S[0,j], mat[j,0]))
+        print (list1)
+        
     #print (list1)
     #list2 = []
     #   if (list1.count(list1[i]) % 2 != 0) & list1[i] not in list2:
@@ -71,6 +72,7 @@ def col_mix(mat):
     col_ = []
     for i in range(4):
         col_ = reduce_list(col_, galois_col(mat[:,i:i+1]))
+        print(10*'=')
         #col_mix_list = np.hstack((col_mix_list, col_))
     print (col_)
     #return col_mix_list
