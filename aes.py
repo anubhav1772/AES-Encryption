@@ -1,16 +1,15 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Apr 13 00:30:27 2018
-
-@author: anubhav singh
-"""
 import numpy as np
+
+# Standard matrix used for AES MixColumn operation
 MIX_COL = np.array([[2, 3, 1, 1],
                     [1, 2, 3, 1],
                     [1, 1, 2, 3],
                     [3, 1, 1, 2]])
 
 #print(MIX_COL[:,0:1])
+
+# function to perform row shift operation
+# parameter parameter is state matrix
 def row_shift(mat):
     list1 = []
     for i in range(4):
@@ -25,8 +24,9 @@ def row_shift(mat):
             else:
                 list2.append(mat[i][(j+1)%4])
         list1.append(list2)
-        #list2.clear()
     return list1
+
+# galois multiplication operation (GF2)
 def galois_col(mat):
     col_ = []
     for i in range(4):
@@ -46,6 +46,7 @@ def galois_col(mat):
     
     return col_
 
+# function to perform MixColumn operation
 def col_mix(mat):
     mat = np.array(mat)
     col_mix_list = []
@@ -60,9 +61,12 @@ def col_mix(mat):
     return col_mix_list
 
 # removes the elements which occur in both lists
+# same element pair during galois multiplication cancel each other
 def reduce_list(list1, list2):
     return list(set(list(set(list1).union(set(list2))))  - set(list(set(list1).intersection(set(list2)))))   
- 
+
+# function to perform polynomial multiplication
+# eg. x^7 + x^6 + x^3 + x^1 + 1 = [7, 6, 3, 1, 0]
 def multPoly(p, q):
     list1 = []
     list2 = []
@@ -73,6 +77,7 @@ def multPoly(p, q):
     else:
         list1.append(0)
         list1.append(1)
+        
     q_bin = bin(int(q, 16))[2:]
     size = len(q_bin)
     for i in range(size):
@@ -87,8 +92,10 @@ def multPoly(p, q):
             else:
                 res.remove(list1[i]+list2[j])
     return res
-  
- state_matrix = [['61','65','69','6d'], 
+            
+           
+
+state_matrix = [['61','65','69','6d'], 
                 ['62','66','6a','6e'], 
                 ['63','67','6b','6f'], 
                 ['64','68','6c','70']]
