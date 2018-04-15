@@ -87,6 +87,16 @@ def multPoly(p, q):
             else:
                 res.remove(list1[i]+list2[j])
     return res
+  
+ state_matrix = [['61','65','69','6d'], 
+                ['62','66','6a','6e'], 
+                ['63','67','6b','6f'], 
+                ['64','68','6c','70']]
+#print(state_matrix)
+rs_mat = row_shift(state_matrix)
+cm_mat = col_mix(rs_mat)
+print (cm_mat)
+
 ##################################################################################################################  
   '''
 import numpy as np
@@ -112,14 +122,7 @@ mat = [[2, 3, 1, 1],
             
            
 
-state_matrix = [['61','65','69','6d'], 
-                ['62','66','6a','6e'], 
-                ['63','67','6b','6f'], 
-                ['64','68','6c','70']]
-#print(state_matrix)
-rs_mat = row_shift(state_matrix)
-cm_mat = col_mix(rs_mat)
-print (cm_mat)
+
 
 
 
