@@ -53,10 +53,13 @@ def col_mix(mat):
     col_ = []
     for i in range(4):
         col_ = galois_col(mat[:,i:i+1])
+        # adding the result from galois multiplication column wise
+        # if list is empty, concatenate the result 
+        # else if list is not empty add the result column wise, not row wise
         if len(col_mix_list)==0:
             col_mix_list = col_mix_list + col_
         else:
-            col_mix_list = np.column_stack((col_mix_list, col_))
+            col_mix_list = np.column_stack((col_mix_list, col_)) 
     # print (col_mix_list)
     return col_mix_list
 
@@ -77,13 +80,15 @@ def multPoly(p, q):
     else:
         list1.append(0)
         list1.append(1)
-        
+    # eg : convert string like 'A1' to binary string 
+    # '0b11010111'[2:0] = 11010111
     q_bin = bin(int(q, 16))[2:]
     size = len(q_bin)
     for i in range(size):
         if q_bin[i]=='1':
             list2.append(size-i-1)
-    # Multiplication
+    # Multiplication of two polynomials
+    # check if the elements obtained after multiplication is already in the 'res' list then they cancel each other...
     res = []
     for i in range(len(list1)):
         for j in range(len(list2)):
