@@ -1,2 +1,2 @@
 # AES_Implementation
-Advanced Encryption Standard Algorithm Implentation
+Advanced Encryption Standard Algorithm Implementation
