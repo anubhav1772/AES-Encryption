@@ -4,31 +4,6 @@ Created on Fri Apr 13 00:30:27 2018
 
 @author: anubhav singh
 """
-'''
-import numpy as np
-np.set_printoptions(formatter={'int':hex})
-mat1 = np.array([[1,2,3,4,5],
-                 [4,5,6,7,8],
-                 [23,56,43,4,34]])
-mat2 = np.array([[2], [23], [32], [12], [1]])
-
-res = np.matmul(mat1, mat2)
-print (res)
-np.set_printoptions(formatter={'int':bin})
-print (res)
-print (hex(3))
-
-np.set_printoptions(formatter={'int':hex})
-mat = [[2, 3, 1, 1],
-       [1, 2, 3, 1],
-       [1, 1, 2, 3],
-       [3, 1, 1, 2]]
-#test = []
-
-'''
-
-
-
 import numpy as np
 MIX_COL = np.array([[2, 3, 1, 1],
                     [1, 2, 3, 1],
@@ -112,6 +87,28 @@ def multPoly(p, q):
             else:
                 res.remove(list1[i]+list2[j])
     return res
+##################################################################################################################  
+  '''
+import numpy as np
+np.set_printoptions(formatter={'int':hex})
+mat1 = np.array([[1,2,3,4,5],
+                 [4,5,6,7,8],
+                 [23,56,43,4,34]])
+mat2 = np.array([[2], [23], [32], [12], [1]])
+
+res = np.matmul(mat1, mat2)
+print (res)
+np.set_printoptions(formatter={'int':bin})
+print (res)
+print (hex(3))
+
+np.set_printoptions(formatter={'int':hex})
+mat = [[2, 3, 1, 1],
+       [1, 2, 3, 1],
+       [1, 1, 2, 3],
+       [3, 1, 1, 2]]
+
+'''
             
            
 
