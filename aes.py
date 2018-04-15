@@ -26,6 +26,9 @@ mat = [[2, 3, 1, 1],
 #test = []
 
 '''
+
+
+
 import numpy as np
 MIX_COL = np.array([[2, 3, 1, 1],
                     [1, 2, 3, 1],
@@ -50,32 +53,36 @@ def row_shift(mat):
         #list2.clear()
     return list1
 def galois_col(mat):
+    col_ = []
     for i in range(4):
         S = MIX_COL[i:i+1,:]
         list1 = []
         for j in range(4):
             list1 = reduce_list(list1 , multPoly(S[0,j], mat[j,0]))
-        print (list1)
-        
-    #print (list1)
-    #list2 = []
-    #   if (list1.count(list1[i]) % 2 != 0) & list1[i] not in list2:
-      #      list2.append(list1[i])
-       # else:
-        #    list2.append(list1[i])
-
-    return list1
+        num = 0
+        for i in range(len(list1)):
+            num = num ^ (1<<list1[i])
+        while(len(bin(num))>10):
+            num = num ^ int('0b100011011',2)
+        col_.append(hex(int(bin(num), 2)))
+        #print(hex(int(bin(num), 2)))
+        #print(bin(num))
+    #print(col_)
+    
+    return col_
 
 def col_mix(mat):
     mat = np.array(mat)
-    col_mix_list = np.empty((0))
+    col_mix_list = []
     col_ = []
     for i in range(4):
-        col_ = reduce_list(col_, galois_col(mat[:,i:i+1]))
-        print(10*'=')
-        #col_mix_list = np.hstack((col_mix_list, col_))
-    print (col_)
-    #return col_mix_list
+        col_ = galois_col(mat[:,i:i+1])
+        if len(col_mix_list)==0:
+            col_mix_list = col_mix_list + col_
+        else:
+            col_mix_list = np.column_stack((col_mix_list, col_))
+    # print (col_mix_list)
+    return col_mix_list
 
 # removes the elements which occur in both lists
 def reduce_list(list1, list2):
@@ -115,9 +122,7 @@ state_matrix = [['61','65','69','6d'],
 #print(state_matrix)
 rs_mat = row_shift(state_matrix)
 cm_mat = col_mix(rs_mat)
-#print (col_mix(cm_mat))
-#print(cm_mat)
-# row_shift(state_matrix)
+print (cm_mat)
 
 
 
