@@ -109,30 +109,7 @@ rs_mat = row_shift(state_matrix)
 cm_mat = col_mix(rs_mat)
 print (cm_mat)
 
-##################################################################################################################  
-  '''
-import numpy as np
-np.set_printoptions(formatter={'int':hex})
-mat1 = np.array([[1,2,3,4,5],
-                 [4,5,6,7,8],
-                 [23,56,43,4,34]])
-mat2 = np.array([[2], [23], [32], [12], [1]])
 
-res = np.matmul(mat1, mat2)
-print (res)
-np.set_printoptions(formatter={'int':bin})
-print (res)
-print (hex(3))
-
-np.set_printoptions(formatter={'int':hex})
-mat = [[2, 3, 1, 1],
-       [1, 2, 3, 1],
-       [1, 1, 2, 3],
-       [3, 1, 1, 2]]
-
-'''
-            
-           
 
 
 
