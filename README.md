@@ -23,7 +23,7 @@ Each of the four rows of the matrix is shifted to the left. Any entries that ‘
 #### MixColumns:
 * each column is processed separately
 * each byte is replaced by a value dependent on all 4 bytes in the column
-* effectively a matrix multiplication in GF(2^8) using prime poly m(x) =x^8+x^4+x^3+x+1
+* effectively a matrix multiplication in GF(2^8) using prime polynomial m(x) =x^8+x^4+x^3+x+1
 ![alt text](https://lh6.googleusercontent.com/proxy/f_AI0fFJW5-318ylwKmCG0UeFkmbw615-H8UWE-P_hTMmZp709bHrmSJDnncATZCVQihCACgF02i7msXM5HFumowS5dPFTbQCD2qHHdz6JWn9rVqGBQw3duYMuVgZKKBshal3xvKVhe8u4mf9jKX-EqMNEnWbbUoE__7RQ=w1200-h630-p-k-no-nu)
 
 
